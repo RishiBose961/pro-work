@@ -1,8 +1,10 @@
 import React from "react";
 
+import { ModeToggle } from "@/components/mode-toggle";
 import { Dock, DockIcon } from "@/components/ui/dock";
-import { FileBoxIcon, Home, ScanFace } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { FileBoxIcon, Home } from "lucide-react";
+import { AuthPage } from "../Auth/AuthPage";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -35,7 +37,11 @@ export function Footer() {
           </Link>
         </DockIcon>
         <DockIcon>
-          <ScanFace className="size-6" />
+         
+          <AuthPage/>
+        </DockIcon>
+        <DockIcon>
+          <ModeToggle/>
         </DockIcon>
       </Dock>
     </div>
