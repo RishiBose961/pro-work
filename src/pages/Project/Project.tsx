@@ -4,6 +4,8 @@ import useProjectHook from "@/hooks/useProject/useProjectHook";
 import { CalendarRange } from "lucide-react";
 import { CreateProject } from "./CreateProject";
 import { useSelector } from "react-redux";
+import LoadingShow from "@/components/Loading/LoadingShow";
+import { LoadingImage } from "@/components/Loading/LoadingImage";
 
 interface CreateProject {
   id: string;
@@ -28,7 +30,11 @@ const Project = () => {
   }
   const { isPending, fetchProject } = projectHook;
   if (isPending) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <LoadingShow />
+      </div>
+    );
   }
 
   return (
@@ -95,7 +101,7 @@ const Project = () => {
                       </div>
 
                       <div className="relative rounded-lg overflow-hidden h-48  ring-1 ring-zinc-800">
-                        <img
+                        <LoadingImage
                           src={item?.imageurl}
                           alt={item?.title}
                           className="w-full h-48 lg:object-cover"

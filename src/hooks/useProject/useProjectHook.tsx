@@ -18,6 +18,7 @@ const useProjectHook = () => {
         },
       }).then((res) => res.json());
     },
+    staleTime:7000
   });
 
   if (isError) {
