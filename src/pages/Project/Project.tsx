@@ -1,56 +1,114 @@
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
+import useProjectHook from "@/hooks/useProject/useProjectHook";
+import { CalendarRange } from "lucide-react";
+import { CreateProject } from "./CreateProject";
+
+interface CreateProject {
+  id: string;
+  title: string;
+  startdate: string;
+  enddate: string;
+  about: string;
+  imageurl: string;
+  type: string;
+  websiteurl: string;
+  githuburl: string;
+}
+
 const Project = () => {
+  const projectHook = useProjectHook();
+  if (!("isPending" in projectHook && "fetchProject" in projectHook)) {
+    return <div>Error: Invalid hook response</div>;
+  }
+  const { isPending, fetchProject } = projectHook;
+  if (isPending) {
+    return <div>Loading...</div>;
+  }
+  
+  const auth = true
+
   return (
-    <div className="max-w-3xl mx-auto">
-      <ol className="relative border-s border-blue-200 dark:border-gray-700">
-        <li className="mb-10 ms-4">
-          <div className="absolute w-3 h-3 bg-blue-200 rounded-full mt-1.5 -start-1.5 border
-           border-white dark:border-gray-900 dark:bg-gray-700"></div>
-          <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-            February 2022
-          </time>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Application UI code in Tailwind CSS
-          </h3>
-          <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-            Get access to over 20+ pages including a dashboard layout, charts,
-            kanban board, calendar, and pre-order E-commerce & Marketing pages. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vero quod ullam sequi blanditiis nulla quas temporibus, corporis, unde porro architecto voluptatum recusandae dolorum eligendi numquam tempora, quia eum quos iusto.  
-          </p>
-          <a
-            href="#"
-            className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          >
-            Learn more{" "}
-            <svg
-              className="w-3 h-3 ms-2 rtl:rotate-180"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </a>
-        </li>
-        <li className="ms-4">
-          <div className="absolute w-3 h-3 bg-blue-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
-          <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-            April 2022
-          </time>
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            E-Commerce UI code in Tailwind CSS
-          </h3>
-          <p className="text-base font-normal text-gray-500 dark:text-gray-400">
-            Get started with dozens of web components and interactive elements
-            built on top of Tailwind CSS.
-          </p>
-        </li>
-      </ol>
+    <div className="min-h-screen  text-white p-4 sm:p-6">
+      <div className="max-w-4xl mx-auto">
+        <CreateProject />
+
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-px bg-zinc-800" />
+
+          <div className="space-y-8 sm:space-y-12">
+            {fetchProject?.map((item: CreateProject) => (
+              <div key={item.id} className="relative">
+                {/* Timeline dot */}
+                <div
+                  className="absolute left-4 sm:left-8 -translate-x-1/2 size-3  rounded-full
+                   bg-zinc-800"
+                />
+
+                <Card className="ml-8 sm:ml-16  border-zinc-800">
+                  <CardContent className="p-4 sm:p-6">
+                    <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr_200px]">
+                      <div className="space-y-3 sm:space-y-4">
+                        <h3 className="text-lg sm:text-xl font-bold line-clamp-2">
+                          {item?.title}
+                        </h3>
+
+                        <div className="flex flex-wrap gap-2 sm:gap-4 text-xs sm:text-sm text-zinc-400">
+                          <div className="flex items-center gap-1">
+                            <CalendarRange className="w-3 h-3 sm:w-4 sm:h-4" />
+                            {new Date(item?.startdate).toLocaleDateString()}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <CalendarRange className="w-3 h-3 sm:w-4 sm:h-4" />
+                            {new Date(item?.enddate).toLocaleDateString()}
+                          </div>
+                        </div>
+
+                        <p className="text-sm sm:text-base text-zinc-400 line-clamp-3">
+                          {item?.about}
+                        </p>
+                        <div className=" space-x-3">
+                          <Badge className=" rounded-full uppercase">
+                            {item?.type}
+                          </Badge>
+                          <a href={item?.websiteurl}>
+                            <Badge className=" rounded-full uppercase">
+                              Visit
+                            </Badge>
+                          </a>
+                          <a href={item?.githuburl}>
+                            <Badge className=" rounded-full uppercase">
+                              repository
+                            </Badge>
+                          </a>
+
+                          {
+                            auth && (
+                              <Badge className=" rounded-full cursor-pointer uppercase">
+                                Edit
+                              </Badge>
+                            )
+                          }
+                      
+                        </div>
+                      </div>
+
+                      <div className="relative rounded-lg overflow-hidden h-48  ring-1 ring-zinc-800">
+                        <img
+                          src={item?.imageurl}
+                          alt={item?.title}
+                          className="w-full h-48 lg:object-cover"
+                        />
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

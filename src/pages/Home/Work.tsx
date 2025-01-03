@@ -7,7 +7,7 @@ const skills = [
   },
   {
     id: 2,
-    name: "Reactjs / Expo",
+    name: "Reactjs",
   },
   {
     id: 3,
@@ -31,13 +31,21 @@ const skills = [
   },
   {
     id: 8,
-    name: "MongoDB / PostgreSQL"
+    name: "MongoDB"
+  },
+  {
+    id: 9,
+    name: "PostgreSQL"
+  },
+  {
+    id: 8,
+    name: "React Native / EXPO"
   },
 ];
 
 const Work = () => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-8 gap-3">
+    <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
       {skills.map((skill) => (
         <div
           key={skill.id}

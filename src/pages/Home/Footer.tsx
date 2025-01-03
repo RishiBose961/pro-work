@@ -3,17 +3,37 @@ import React from "react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Dock, DockIcon } from "@/components/ui/dock";
 import { Link } from "@tanstack/react-router";
-import { FileBoxIcon, Home } from "lucide-react";
+import { FileBoxIcon, Home, LogOutIcon, User2 } from "lucide-react";
 import { AuthPage } from "../Auth/AuthPage";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { logoutUserAction } from "@/slice/authSlice";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
 export function Footer() {
+  const { isAuthenticated, isLoading, user } = useSelector(
+    (state: {
+      auth: { isAuthenticated: boolean; isLoading: boolean; user: { username: string ,email:string} | null };
+    }) => state.auth
+  );
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logoutUserAction());
+  };
+
   return (
     <div
       className="fixed z-50 w-full max-w-lg -translate-x-1/2  
       bottom-4 left-1/2 "
     >
+      {isLoading ? <div>Loading...</div> : null}
       <Dock direction="middle">
         <DockIcon>
           <a
@@ -37,11 +57,29 @@ export function Footer() {
           </Link>
         </DockIcon>
         <DockIcon>
-         
-          <AuthPage/>
+          {isAuthenticated ? (
+            <Popover>
+              <PopoverTrigger>
+                {" "}
+                <User2 />
+              </PopoverTrigger>
+              <PopoverContent className="mb-5">
+               <p>{user?.username}</p>
+               <p>{user?.email}</p>
+              </PopoverContent>
+            </Popover>
+          ) : (
+            <AuthPage />
+          )}
         </DockIcon>
+        {
+          isAuthenticated && <DockIcon>
+          <LogOutIcon onClick={handleLogout} />
+        </DockIcon>
+        }
+        
         <DockIcon>
-          <ModeToggle/>
+          <ModeToggle />
         </DockIcon>
       </Dock>
     </div>
