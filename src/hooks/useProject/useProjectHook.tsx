@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 const useProjectHook = () => {
+  const { base_url } = CheckEnvironment();
   const {
     isPending,
     error,
@@ -9,7 +10,7 @@ const useProjectHook = () => {
   } = useQuery({
     queryKey: ["fetchProjects"],
     queryFn: async () => {
-      return await fetch(`http://localhost:5000/api/getallproject`, {
+      return await fetch(`${base_url}/api/getallproject`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
