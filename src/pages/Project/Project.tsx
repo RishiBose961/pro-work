@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import useProjectHook from "@/hooks/useProject/useProjectHook";
 import { CalendarRange } from "lucide-react";
 import { CreateProject } from "./CreateProject";
+import { useSelector } from "react-redux";
 
 interface CreateProject {
   id: string;
@@ -17,6 +18,11 @@ interface CreateProject {
 }
 
 const Project = () => {
+  const { isAuthenticated } = useSelector(
+    (state: { auth: { isAuthenticated: boolean} }) =>
+      state.auth
+  );
+
   const projectHook = useProjectHook();
   if (!("isPending" in projectHook && "fetchProject" in projectHook)) {
     return <div>Error: Invalid hook response</div>;
@@ -26,7 +32,7 @@ const Project = () => {
     return <div>Loading...</div>;
   }
   
-  const auth = true
+ 
 
   return (
     <div className="min-h-screen  text-white p-4 sm:p-6">
@@ -84,7 +90,7 @@ const Project = () => {
                           </a>
 
                           {
-                            auth && (
+                            isAuthenticated && (
                               <Badge className=" rounded-full cursor-pointer uppercase">
                                 Edit
                               </Badge>
