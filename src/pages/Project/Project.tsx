@@ -19,8 +19,7 @@ interface CreateProject {
 
 const Project = () => {
   const { isAuthenticated } = useSelector(
-    (state: { auth: { isAuthenticated: boolean} }) =>
-      state.auth
+    (state: { auth: { isAuthenticated: boolean } }) => state.auth
   );
 
   const projectHook = useProjectHook();
@@ -31,13 +30,11 @@ const Project = () => {
   if (isPending) {
     return <div>Loading...</div>;
   }
-  
- 
 
   return (
     <div className="min-h-screen  text-white p-4 sm:p-6">
       <div className="max-w-4xl mx-auto">
-        <CreateProject />
+        {isAuthenticated && <CreateProject />}
 
         <div className="relative">
           {/* Timeline line */}
@@ -89,14 +86,11 @@ const Project = () => {
                             </Badge>
                           </a>
 
-                          {
-                            isAuthenticated && (
-                              <Badge className=" rounded-full cursor-pointer uppercase">
-                                Edit
-                              </Badge>
-                            )
-                          }
-                      
+                          {isAuthenticated && (
+                            <Badge className=" rounded-full cursor-pointer uppercase">
+                              Edit
+                            </Badge>
+                          )}
                         </div>
                       </div>
 
