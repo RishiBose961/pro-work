@@ -5,7 +5,7 @@ interface LoadingSpinnerProps {
   color?: string;
 }
 
-export function LoadingSpinner({ size = 40, color = 'currentColor' }: LoadingSpinnerProps) {
+export function LoadingSpinner({ size = 40, color}: LoadingSpinnerProps) {
   return (
     <motion.div
       style={{

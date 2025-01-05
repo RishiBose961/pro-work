@@ -78,16 +78,16 @@ const Project = () => {
                           {item?.about}
                         </p>
                         <div className=" space-x-3">
-                          <Badge className=" rounded-full uppercase">
+                          <Badge className=" rounded-full border-blue border-2 bg-gradient-to-r from-pink-600 cursor-default to-purple-500 text-white uppercase">
                             {item?.type}
                           </Badge>
                           <a href={item?.websiteurl}>
-                            <Badge className=" rounded-full uppercase">
+                            <Badge className=" rounded-full border-2 bg-gradient-to-tl from-amber-500 to-yellow-400  text-black uppercase">
                               Visit
                             </Badge>
                           </a>
                           <a href={item?.githuburl}>
-                            <Badge className=" rounded-full uppercase">
+                            <Badge className=" rounded-full border-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white uppercase">
                               repository
                             </Badge>
                           </a>

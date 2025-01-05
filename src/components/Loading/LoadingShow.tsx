@@ -31,15 +31,20 @@ const LoadingShow = () => {
     return () => clearInterval(interval);
   }, []);
 
+
+
+
+  const colors = localStorage.getItem('vite-ui-theme')
+
   return (
     <motion.div
-      className={`flex flex-col items-center justify-center  text-white mt-20`}
+      className={`flex flex-col items-center justify-center  mt-20`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
       <div>
-        <LoadingSpinner size={60} color="white" />
+        <LoadingSpinner size={60} color={colors==='dark'? 'white':'black'} />
       </div>
 
       <div className="p-2">
