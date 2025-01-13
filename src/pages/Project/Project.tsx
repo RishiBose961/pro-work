@@ -1,13 +1,17 @@
+import { LoadingImage } from "@/components/Loading/LoadingImage";
+import LoadingShow from "@/components/Loading/LoadingShow";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import useProjectHook from "@/hooks/useProject/useProjectHook";
 import { CalendarRange } from "lucide-react";
-import { CreateProject } from "./CreateProject";
 import { useSelector } from "react-redux";
-import LoadingShow from "@/components/Loading/LoadingShow";
-import { LoadingImage } from "@/components/Loading/LoadingImage";
+import { CreateProject } from "./CreateProject";
+import { EditPages } from "../Edit/EditPages";
+import { Link } from "@tanstack/react-router";
+
 
 interface CreateProject {
+  [x: string]: string;
   id: string;
   title: string;
   startdate: string;
@@ -40,7 +44,12 @@ const Project = () => {
   return (
     <div className="min-h-screen  text-white p-4 sm:p-6">
       <div className="max-w-4xl mx-auto">
+        <div className=" space-x-4">
         {isAuthenticated && <CreateProject />}
+
+        <Link to="/search">🔍 Search</Link>
+        </div>
+
 
         <div className="relative">
           {/* Timeline line */}
@@ -72,39 +81,54 @@ const Project = () => {
                             <CalendarRange className="w-3 h-3 sm:w-4 sm:h-4" />
                             {new Date(item?.enddate).toLocaleDateString()}
                           </div>
-                        </div>
+                          <div>
+                            <p className="text-sm sm:text-base text-zinc-400 line-clamp-3">
+                              Description ➡️ {item?.about}
+                            </p>
+                          </div>
 
-                        <p className="text-sm sm:text-base text-zinc-400 line-clamp-3">
-                          {item?.about}
-                        </p>
-                        <div className=" space-x-3">
-                          <Badge className=" rounded-full border-blue border-2 bg-gradient-to-r from-pink-600 cursor-default to-purple-500 text-white uppercase">
-                            {item?.type}
-                          </Badge>
-                          <a href={item?.websiteurl}>
-                            <Badge className=" rounded-full border-2 bg-gradient-to-tl from-amber-500 to-yellow-400  text-black uppercase">
-                              Visit
+                          <div className="flex flex-wrap gap-2 sm:gap-3">
+                            <Badge
+                              variant="secondary"
+                              className="bg-indigo-100 cursor-default text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300"
+                            >
+                              {item.type}
                             </Badge>
-                          </a>
-                          <a href={item?.githuburl}>
-                            <Badge className=" rounded-full border-2 bg-gradient-to-r from-indigo-500 to-purple-600 text-white uppercase">
-                              repository
-                            </Badge>
-                          </a>
 
-                          {isAuthenticated && (
-                            <Badge className=" rounded-full cursor-pointer uppercase">
-                              Edit
-                            </Badge>
-                          )}
+                            <a href={item.websiteurl}>
+                              <Badge
+                                variant="secondary"
+                                className="bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300"
+                              >
+                                Visit
+                              </Badge>
+                            </a>
+
+                            <a href={item.githuburl}>
+                              <Badge
+                                variant="secondary"
+                                className="bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+                              >
+                                Repository
+                              </Badge>
+                            </a>
+
+                            {isAuthenticated && (
+                                <EditPages/>
+                            )}
+
+                            {/* <Link to="/project/$id" params={{id: item?._id}}>Visit to see</Link> */}
+
+                          
+                          </div>
                         </div>
                       </div>
 
-                      <div className="relative rounded-lg overflow-hidden h-48  ring-1 ring-zinc-800">
+                      <div className="relative rounded-lg overflow-hidden h-48 w-fit  ring-1 ring-zinc-800">
                         <LoadingImage
                           src={item?.imageurl}
                           alt={item?.title}
-                          className="w-full h-48 lg:object-cover"
+                          className="w-48 h-48 lg:object-cover"
                         />
                       </div>
                     </div>
