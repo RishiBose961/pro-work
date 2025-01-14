@@ -9,6 +9,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const SearchPage = () => {
+
   const [search, setSearch] = useState("");
   const [error, setError] = useState("");
   const { base_url } = CheckEnvironment();

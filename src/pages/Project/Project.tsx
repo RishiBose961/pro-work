@@ -3,12 +3,12 @@ import LoadingShow from "@/components/Loading/LoadingShow";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import useProjectHook from "@/hooks/useProject/useProjectHook";
-import { CalendarRange } from "lucide-react";
+import { CalendarRange, Eye, Search } from "lucide-react";
 import { useSelector } from "react-redux";
 import { CreateProject } from "./CreateProject";
 import { EditPages } from "../Edit/EditPages";
 import { Link } from "@tanstack/react-router";
-
+import { Button } from "@/components/ui/button";
 
 interface CreateProject {
   [x: string]: string;
@@ -44,12 +44,15 @@ const Project = () => {
   return (
     <div className="min-h-screen  text-white p-4 sm:p-6">
       <div className="max-w-4xl mx-auto">
-        <div className=" space-x-4">
-        {isAuthenticated && <CreateProject />}
+        <div className=" space-x-4 flex items-center">
+          {isAuthenticated && <CreateProject />}
 
-        <Link to="/search">🔍 Search</Link>
+          <Link to="/search">
+            <Button className="mt-4 mb-4" variant="secondary">
+              <Search className=" text-black dark:text-white" />
+            </Button>
+          </Link>
         </div>
-
 
         <div className="relative">
           {/* Timeline line */}
@@ -113,13 +116,14 @@ const Project = () => {
                               </Badge>
                             </a>
 
-                            {isAuthenticated && (
-                                <EditPages/>
-                            )}
+                            {isAuthenticated && <EditPages />}
 
-                            {/* <Link to="/project/$id" params={{id: item?._id}}>Visit to see</Link> */}
-
-                          
+                            <Link to="/project/$id" params={{ id: item?._id }}>
+                              {" "}
+                              <a href={item.websiteurl}>
+                                <Eye className=" size-5" />
+                              </a>
+                            </Link>
                           </div>
                         </div>
                       </div>

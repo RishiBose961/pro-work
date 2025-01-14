@@ -23,8 +23,7 @@ const Hero = () => {
           />
 
           <HyperText className=" text-xl mt-2">
-            A web Developer, Native App Developer MERN Developer, Content
-            Creator
+            A web Developer, Native App Developer MERN Developer
           </HyperText>
           <p className="mt-2 text-md">
             A web developer job is to create websites. While their primary role
