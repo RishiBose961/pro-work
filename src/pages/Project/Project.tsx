@@ -1,14 +1,14 @@
 import { LoadingImage } from "@/components/Loading/LoadingImage";
 import LoadingShow from "@/components/Loading/LoadingShow";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import useProjectHook from "@/hooks/useProject/useProjectHook";
+import { Link } from "@tanstack/react-router";
 import { CalendarRange, Eye, Search } from "lucide-react";
 import { useSelector } from "react-redux";
-import { CreateProject } from "./CreateProject";
 import { EditPages } from "../Edit/EditPages";
-import { Link } from "@tanstack/react-router";
-import { Button } from "@/components/ui/button";
+import { CreateProject } from "./CreateProject";
 
 interface CreateProject {
   [x: string]: string;
@@ -118,11 +118,11 @@ const Project = () => {
 
                             {isAuthenticated && <EditPages />}
 
-                            <Link to="/project/$id" params={{ id: item?._id }}>
+                            <Link to="/project/$id" params={{ id: item?._id }} >
                               {" "}
-                              <a href={item.websiteurl}>
+                 
                                 <Eye className=" size-5" />
-                              </a>
+                        
                             </Link>
                           </div>
                         </div>

@@ -3,18 +3,18 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
-  BreadcrumbSeparator
+  BreadcrumbSeparator,
 } from "../ui/breadcrumb";
 
 const BreadCrumb = () => {
   const { pathname } = useLocation();
+
   const pathnames = pathname.split("/").filter((x) => x);
 
   return (
-    <div className="mx-auto max-w-7xl mt-3">
+    <div className="mx-auto max-w-7xl mt-3 p-2">
       <Breadcrumb>
         <BreadcrumbList>
-          {/* Home link */}
           <BreadcrumbItem>
             <Link to="/">Home</Link>
           </BreadcrumbItem>
