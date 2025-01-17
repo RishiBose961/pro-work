@@ -78,7 +78,7 @@ const SearchPage = () => {
           </span>
         ) : (
           result?.map((item) => (
-            <Link to="/project/$id" params={{ id: item.id }}>
+            <Link to="/projectShow/$id" params={{ id: item.id }}>
               <div className="flex items-center m-3 ring-1 dark:ring-white ring-black rounded-2xl">
                 <LoadingImage
                   src={item?.image}

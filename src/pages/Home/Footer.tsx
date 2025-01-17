@@ -3,7 +3,7 @@ import React from "react";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Dock, DockIcon } from "@/components/ui/dock";
 import { Link } from "@tanstack/react-router";
-import { FileBoxIcon, Home, LogOutIcon, User2 } from "lucide-react";
+import { FileBoxIcon, Home, LogOutIcon, Search, User2 } from "lucide-react";
 import { AuthPage } from "../Auth/AuthPage";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -45,15 +45,21 @@ export function Footer() {
           </a>
         </DockIcon>
         <DockIcon>
-          <Link to="/">
+          <Link to="/" activeProps={{ className: ` text-red-400` }}>
             {" "}
             <Home className="size-6" />
           </Link>
         </DockIcon>
         <DockIcon>
-          <Link to="/projectshow">
+          <Link to="/projectshow"  activeProps={{ className: ` text-red-400` }}>
             {" "}
             <FileBoxIcon className="size-6" />
+          </Link>
+        </DockIcon>
+        <DockIcon>
+          <Link to="/search" activeProps={{ className: ` text-red-400` }}>
+            {" "}
+            <Search className="size-6" />
           </Link>
         </DockIcon>
         <DockIcon>

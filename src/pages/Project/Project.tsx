@@ -118,7 +118,7 @@ const Project = () => {
 
                             {isAuthenticated && <EditPages />}
 
-                            <Link to="/project/$id" params={{ id: item?._id }} >
+                            <Link to="/projectShow/$id" params={{ id: item?._id }} >
                               {" "}
                  
                                 <Eye className=" size-5" />

@@ -3,6 +3,7 @@ import { LoadingImage } from "@/components/Loading/LoadingImage";
 import LoadingShow from "@/components/Loading/LoadingShow";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
+import { CalendarRange } from "lucide-react";
 
 const IndividualProject = ({ id }: { id: string }) => {
   const { base_url } = CheckEnvironment();
@@ -44,13 +45,15 @@ const IndividualProject = ({ id }: { id: string }) => {
             <h1 className="text-3xl font-bold mb-2">{singlepostData?.title}</h1>
             <p className="text-md lg:text-lg mb-4">{singlepostData?.about}</p>
 
-            <div className="flex flex-wrap gap-2 sm:gap-3">
+            <div className="flex flex-wrap gap-2 sm:gap-3 items-center">
+              <CalendarRange className=" size-5"/>
               <Badge
                 variant="secondary"
          
               >
                 {new Date(singlepostData?.startdate).toLocaleDateString()}
               </Badge>
+              <CalendarRange className=" size-5"/>
               <Badge
                 variant="secondary"
              
