@@ -5,6 +5,7 @@ import { AnimatedText } from "./AnimatedText";
 import { LoadingImage } from "@/components/Loading/LoadingImage";
 
 const Hero = () => {
+  
   return (
     <div>
       <div className=" grid grid-cols-1 lg:grid-cols-3">

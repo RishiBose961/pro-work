@@ -9,7 +9,7 @@ import { routeTree } from "./routeTree.gen.ts";
 import { Toaster } from "./components/ui/toaster.tsx";
 import { Provider } from "react-redux";
 import { store } from "./store.ts";
-
+import { SpeedInsights } from "@vercel/speed-insights/react";
 const router = createRouter({ routeTree });
 const queryClient = new QueryClient();
 
@@ -24,6 +24,7 @@ createRoot(document.getElementById("root")!).render(
     <Provider store={store}>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
+          <SpeedInsights />
           <RouterProvider router={router} />
           <ReactQueryDevtools initialIsOpen={false} />
           <Toaster />
