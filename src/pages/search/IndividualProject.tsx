@@ -30,7 +30,7 @@ const IndividualProject = ({ id }: { id: string }) => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 mt-5">
+    <div className="container mx-auto px-4 py-8 mt-5 mb-3">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-8">
         <div className="relative aspect-square flex justify-center">
           <LoadingImage
