@@ -9,6 +9,7 @@ import { CalendarRange, Eye, Search } from "lucide-react";
 import { useSelector } from "react-redux";
 import { EditPages } from "../Edit/EditPages";
 import { CreateProject } from "./CreateProject";
+import { Helmet } from "react-helmet";
 
 interface CreateProject {
   [x: string]: string;
@@ -43,6 +44,11 @@ const Project = () => {
 
   return (
     <div className="min-h-screen  text-white p-4 sm:p-6">
+       <Helmet>
+        <title>Rishi Bose (Project)</title>
+        <meta name="description" content=" Project" />
+        <meta name="keywords" content="react, component, dynamic data, javascript, potfolio" />
+      </Helmet>
       <div className="max-w-4xl mx-auto">
         <div className=" space-x-4 flex items-center">
           {isAuthenticated && <CreateProject />}

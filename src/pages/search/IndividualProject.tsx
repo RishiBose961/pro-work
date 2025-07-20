@@ -4,6 +4,7 @@ import LoadingShow from "@/components/Loading/LoadingShow";
 import { Badge } from "@/components/ui/badge";
 import { useQuery } from "@tanstack/react-query";
 import { CalendarRange } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const IndividualProject = ({ id }: { id: string }) => {
   const { base_url } = CheckEnvironment();
@@ -31,6 +32,11 @@ const IndividualProject = ({ id }: { id: string }) => {
 
   return (
     <div className="container mx-auto px-4 py-8 mt-5 mb-3">
+          <Helmet>
+        <title>Rishi Bose | {singlepostData?.title}</title>
+        <meta name="description" content={singlepostData?.about} />
+        <meta name="keywords" content="react, component, dynamic data, javascript, potfolio" />
+      </Helmet>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-8">
         <div className="relative aspect-square flex justify-center">
           <LoadingImage

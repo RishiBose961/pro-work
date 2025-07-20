@@ -3,11 +3,15 @@ import HyperText from "@/components/ui/hyper-text";
 import { GithubIcon, Linkedin, X, Youtube } from "lucide-react";
 import { AnimatedText } from "./AnimatedText";
 import { LoadingImage } from "@/components/Loading/LoadingImage";
-
+import { Helmet } from "react-helmet";
 const Hero = () => {
-  
   return (
     <div>
+      <Helmet>
+        <title>Rishi Bose</title>
+        <meta name="description" content="A web developer job is to create websites. While their primary role is to ensure the website is visually appealing and easy to navigate, many web developers are also responsible for the website performance and capacity" />
+        <meta name="keywords" content="react, component, dynamic data, javascript, potfolio" />
+      </Helmet>
       <div className=" grid grid-cols-1 lg:grid-cols-3">
         <div className="col-span-1 flex justify-center items-center text-center py-12">
           <LoadingImage

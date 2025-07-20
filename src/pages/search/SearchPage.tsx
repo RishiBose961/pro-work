@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import axios from "axios";
 import { useState } from "react";
+import { Helmet } from "react-helmet";
 
 const SearchPage = () => {
 
@@ -52,6 +53,11 @@ const SearchPage = () => {
   };
   return (
     <div className="mt-6 mx-2">
+       <Helmet>
+        <title>Rishi Bose {search ? `(${search})` : ""}</title>
+        <meta name="description" content="Search Projects" />
+        <meta name="keywords" content="react, component, dynamic data, javascript, potfolio" />
+      </Helmet>
       <form onSubmit={handleSubmit}>
         <div className=" flex items-center space-x-3">
           <Input
