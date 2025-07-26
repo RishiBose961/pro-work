@@ -1,0 +1,12 @@
+# Allow all web crawlers to access the site
+User-agent: *
+
+# Allow access to all content
+Allow: /
+
+# Disallow access to the node_modules directory (good practice, though not typically served)
+Disallow: /node_modules/
+
+# It's also a good idea to include a link to your sitemap if you have one.
+# Replace the URL with the actual URL of your sitemap.
+Sitemap: https://rishibose.fun/sitemap.xml
