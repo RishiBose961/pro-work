@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import useProjectHook from "@/hooks/useProject/useProjectHook";
 import { Link } from "@tanstack/react-router";
-import { CalendarRange, Eye, Search } from "lucide-react";
+import { CalendarRange, Eye, Monitor, Search, Smartphone, Tv } from "lucide-react";
+import { Helmet } from "react-helmet";
 import { useSelector } from "react-redux";
 import { EditPages } from "../Edit/EditPages";
 import { CreateProject } from "./CreateProject";
-import { Helmet } from "react-helmet";
 
 interface CreateProject {
   [x: string]: string;
@@ -44,10 +44,13 @@ const Project = () => {
 
   return (
     <div className="min-h-screen  text-white p-4 sm:p-6">
-       <Helmet>
+      <Helmet>
         <title>Rishi Bose (Project)</title>
         <meta name="description" content=" Project" />
-        <meta name="keywords" content="react, component, dynamic data, javascript, potfolio" />
+        <meta
+          name="keywords"
+          content="react, component, dynamic data, javascript, potfolio"
+        />
       </Helmet>
       <div className="max-w-4xl mx-auto">
         <div className=" space-x-4 flex items-center">
@@ -98,9 +101,13 @@ const Project = () => {
 
                           <div className="flex flex-wrap gap-2 sm:gap-3">
                             <Badge
-                              variant="secondary"
-                              className="bg-indigo-100 cursor-default text-indigo-800 dark:bg-indigo-900 dark:text-indigo-300"
+                              className="bg-blue-100 text-blue-800 border-blue-200 
+             dark:bg-blue-500/20 dark:text-blue-300 dark:border-blue-500/30"
                             >
+                              {
+                              item?.type === "Website/PWA" ? <Monitor className="w-3 h-3 mr-1" /> :  item?.type === "Expo/Native" ? <Smartphone className="w-3 h-3 mr-1" /> : <Tv className="w-3 h-3 mr-1" />
+                              }
+                              
                               {item.type}
                             </Badge>
 
@@ -124,11 +131,12 @@ const Project = () => {
 
                             {isAuthenticated && <EditPages />}
 
-                            <Link to="/projectShow/$id" params={{ id: item?._id }} >
+                            <Link
+                              to="/projectShow/$id"
+                              params={{ id: item?._id }}
+                            >
                               {" "}
-                 
-                                <Eye className=" size-5" />
-                        
+                              <Eye className=" size-5" />
                             </Link>
                           </div>
                         </div>

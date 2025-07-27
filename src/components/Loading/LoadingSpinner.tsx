@@ -2,16 +2,17 @@ import { motion } from 'framer-motion';
 
 interface LoadingSpinnerProps {
   size?: number;
-  color?: string;
+  className?: string; // Tailwind classes for color/theme
 }
 
-export function LoadingSpinner({ size = 40, color}: LoadingSpinnerProps) {
+export function LoadingSpinner({ size = 40, className }: LoadingSpinnerProps) {
   return (
     <motion.div
+      className={className}
       style={{
         width: size,
         height: size,
-        border: `4px solid ${color}`,
+        border: `4px solid currentColor`,
         borderTopColor: 'transparent',
         borderRadius: '50%',
       }}
@@ -20,4 +21,3 @@ export function LoadingSpinner({ size = 40, color}: LoadingSpinnerProps) {
     />
   );
 }
-

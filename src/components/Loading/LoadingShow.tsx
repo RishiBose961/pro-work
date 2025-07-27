@@ -32,10 +32,6 @@ const LoadingShow = () => {
   }, []);
 
 
-
-
-  const colors = localStorage.getItem('vite-ui-theme')
-
   return (
     <motion.div
       className={`flex flex-col items-center justify-center  mt-20`}
@@ -44,7 +40,7 @@ const LoadingShow = () => {
       exit={{ opacity: 0 }}
     >
       <div>
-        <LoadingSpinner size={60} color={colors==='dark'? 'white':'black'} />
+        <LoadingSpinner size={60} className="animate-spin" />
       </div>
 
       <div className="p-2">
